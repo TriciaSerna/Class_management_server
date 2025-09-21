@@ -5,9 +5,8 @@ const PORT = 3000;
 app.use(express.json());
 
 let users = [
-    {id:1,firstName:`tricia`,lastName:`serna`,section:`bsit 4b`, status:`present`},
-    {id:2,firstName:`tricia2`,lastName:`serna2`,section:`bsit 4b`, status:`absent`},
-
+  { id: 1, firstName: "Tricia1", lastName: "Serna1", section: "bsit4b", status: "present" },
+  { id: 2, firstName: "Tricia2", lastName: "Serna2", section: "bsit4b", status: "absent" },
 ];
 
 app.post("/users", (req, res) => {
@@ -22,7 +21,7 @@ app.post("/users", (req, res) => {
     console.log(`Updated attendance for ${lastName} ${firstName} to: ${status}`);
     return res
       .status(200)
-      .json({ message: `Attendance for ${lastName} ${firstName} updated to ${status} `});
+      .json({ message: `Attendance for ${lastName} ${firstName} updated to ${status}` });
   } else {
     const newUser = {
       id: users.length + 1,
@@ -35,7 +34,7 @@ app.post("/users", (req, res) => {
     console.log(`New user added: ${lastName} ${firstName} with status ${status}`);
     return res
       .status(201)
-      .json({ message: `New student ${lastName} ${firstName} added with status ${status} `});
+      .json({ message: `New student ${lastName} ${firstName} added with status ${status}` });
   }
 });
 
@@ -43,3 +42,13 @@ app.get("/users", (req, res) => {
   res.status(200).json(users);
 });
 
+app.get("/", (req, res) => {
+  res.send("Server is up and Running");
+});
+
+module.exports = app;
+
+
+app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT}`);
+});
